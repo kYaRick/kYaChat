@@ -1,0 +1,84 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35617.110
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kYaChatApi", "kYaChatApi\kYaChatApi.csproj", "{81D7A1E6-4BF5-4E63-B28C-1F5AD517231D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kYaChatUi", "kYaChatUi\kYaChatUi\kYaChatUi.csproj", "{0F1C7030-6A16-4D5F-AA76-5315564DD83E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kYaChatUi.Android", "kYaChatUi\kYaChatUi.Android\kYaChatUi.Android.csproj", "{6F7190C4-1707-4136-AECC-A2D4ECB7A3BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kYaChatUi.Desktop", "kYaChatUi\kYaChatUi.Desktop\kYaChatUi.Desktop.csproj", "{E56118B9-D4A7-40C9-AE67-66ABA9DA5FEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kYaChatUi.iOS", "kYaChatUi\kYaChatUi.iOS\kYaChatUi.iOS.csproj", "{CB630C0A-7234-4E1F-B9BE-A130D8CB046A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kYaChatUi.Browser", "kYaChatUi\kYaChatUi.Browser\kYaChatUi.Browser.csproj", "{4EBE3131-4DBF-4BA3-8547-DB6A26D7347C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "platforms", "platforms", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{B7D1D1FA-5702-4DC5-820E-F44AC3DDB0CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "frontend", "frontend", "{EBBE6DB0-471F-4105-8B28-336D745EC884}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{FF79CDA6-6227-4F43-8CFE-F8D9CFE4102F}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{32BEDE65-BB95-4386-A738-33406BB1D20F}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81D7A1E6-4BF5-4E63-B28C-1F5AD517231D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81D7A1E6-4BF5-4E63-B28C-1F5AD517231D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81D7A1E6-4BF5-4E63-B28C-1F5AD517231D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81D7A1E6-4BF5-4E63-B28C-1F5AD517231D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F1C7030-6A16-4D5F-AA76-5315564DD83E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F1C7030-6A16-4D5F-AA76-5315564DD83E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F1C7030-6A16-4D5F-AA76-5315564DD83E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F1C7030-6A16-4D5F-AA76-5315564DD83E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F7190C4-1707-4136-AECC-A2D4ECB7A3BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F7190C4-1707-4136-AECC-A2D4ECB7A3BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F7190C4-1707-4136-AECC-A2D4ECB7A3BA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6F7190C4-1707-4136-AECC-A2D4ECB7A3BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F7190C4-1707-4136-AECC-A2D4ECB7A3BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F7190C4-1707-4136-AECC-A2D4ECB7A3BA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{E56118B9-D4A7-40C9-AE67-66ABA9DA5FEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E56118B9-D4A7-40C9-AE67-66ABA9DA5FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E56118B9-D4A7-40C9-AE67-66ABA9DA5FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E56118B9-D4A7-40C9-AE67-66ABA9DA5FEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB630C0A-7234-4E1F-B9BE-A130D8CB046A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB630C0A-7234-4E1F-B9BE-A130D8CB046A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB630C0A-7234-4E1F-B9BE-A130D8CB046A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{CB630C0A-7234-4E1F-B9BE-A130D8CB046A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB630C0A-7234-4E1F-B9BE-A130D8CB046A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB630C0A-7234-4E1F-B9BE-A130D8CB046A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4EBE3131-4DBF-4BA3-8547-DB6A26D7347C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EBE3131-4DBF-4BA3-8547-DB6A26D7347C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EBE3131-4DBF-4BA3-8547-DB6A26D7347C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EBE3131-4DBF-4BA3-8547-DB6A26D7347C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{81D7A1E6-4BF5-4E63-B28C-1F5AD517231D} = {B7D1D1FA-5702-4DC5-820E-F44AC3DDB0CA}
+		{0F1C7030-6A16-4D5F-AA76-5315564DD83E} = {EBBE6DB0-471F-4105-8B28-336D745EC884}
+		{6F7190C4-1707-4136-AECC-A2D4ECB7A3BA} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{E56118B9-D4A7-40C9-AE67-66ABA9DA5FEE} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{CB630C0A-7234-4E1F-B9BE-A130D8CB046A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{4EBE3131-4DBF-4BA3-8547-DB6A26D7347C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {EBBE6DB0-471F-4105-8B28-336D745EC884}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {83264A55-9DEA-4E78-8830-BA9747590215}
+	EndGlobalSection
+EndGlobal
