@@ -1,0 +1,63 @@
+<UserControl
+    x:Class="kYaChat.Client.Pages.WaitingRoomPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:kYaChat.Client.ViewModels"
+    d:DesignHeight="400"
+    d:DesignWidth="400"
+    x:DataType="vm:WaitingRoomViewModel"
+    mc:Ignorable="d">
+
+    <Design.DataContext>
+        <vm:WaitingRoomViewModel />
+    </Design.DataContext>
+
+    <UserControl.Styles>
+        <Style Selector="StackPanel">
+            <Setter Property="Orientation" Value="Vertical" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Spacing" Value="5" />
+        </Style>
+
+        <Style Selector="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+
+        <Style Selector="TextBox">
+            <Setter Property="Width" Value="250" />
+        </Style>
+    </UserControl.Styles>
+
+    <Border Classes="Hover" Theme="{StaticResource CardBorder}">
+        <StackPanel>
+            <TextBlock Classes="H1" Theme="{StaticResource TitleTextBlock}">
+                Welcome
+            </TextBlock>
+            <TextBox
+                Classes="ClearButton"
+                InnerLeftContent="User Name"
+                Text="{Binding UserName}" />
+            <TextBox
+                Classes="ClearButton"
+                InnerLeftContent="Room Name"
+                Text="{Binding ChatName}" />
+            <Button Classes="Primary" Theme="{DynamicResource SolidButton}">
+                <StackPanel Orientation="Horizontal">
+                    <PathIcon
+                        HorizontalAlignment="Center"
+                        Data="{DynamicResource SemiIconComment}"
+                        Theme="{DynamicResource InnerPathIcon}" />
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="Normal"
+                        Text="Join" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Border>
+</UserControl>
