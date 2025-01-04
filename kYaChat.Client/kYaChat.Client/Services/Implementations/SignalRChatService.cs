@@ -1,6 +1,6 @@
 ﻿using kYaChat.Client.Helpers;
 using kYaChat.Client.Services.Interfaces;
-using kYaChat.Models.Rooms;
+using kYaChat.Shared.Dtos;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Threading.Tasks;
@@ -10,79 +10,45 @@ namespace kYaChat.Client.Services.Implementations;
 public class SignalRChatService : IChatService, IAsyncDisposable
 {
    private readonly HubConnection _hubConnection;
-   private readonly string _hubUrl;
-   private bool _isConnected;
+   private string? _currentRoom;
+   private string? _currentUser;
 
-   public event Action<string> OnUserJoined = delegate { };
-   public event Action<string> OnUserLeft = delegate { };
-   public event Action<ChatMessage> OnMessageReceived = delegate { };
-   public event Action<string> OnError = delegate { };
-
-   public SignalRChatService(AppConfiguration config)
+   public SignalRChatService(AppConfiguration configuration)
    {
-      _hubUrl = config.ChatHubUrl;
       _hubConnection = new HubConnectionBuilder()
-          .WithUrl(_hubUrl)
+          .WithUrl(configuration.ChatHubUrl)
           .WithAutomaticReconnect()
           .Build();
 
-      RegisterHandlers();
+      _hubConnection.On<RoomDto>("RoomUpdated", room =>
+          RoomUpdated?.Invoke(room));
+
+      _hubConnection.On<ChatMessageDto>("ReceiveMessage", message =>
+          MessageReceived?.Invoke(message));
+
+      _hubConnection.On<string>("Error", error =>
+          ErrorReceived?.Invoke(error));
    }
 
-   private void RegisterHandlers()
-   {
-      _hubConnection.On<string>("UserJoined", (user) =>
-          OnUserJoined.Invoke(user));
+   public bool IsConnected =>
+       _hubConnection.State == HubConnectionState.Connected;
 
-      _hubConnection.On<string>("UserLeft", (user) =>
-          OnUserLeft.Invoke(user));
+   public string? CurrentRoom => _currentRoom;
+   public string? CurrentUser => _currentUser;
 
-      _hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
-          OnMessageReceived.Invoke(new ChatMessage
-          {
-             UserName = user,
-             Message = message,
-             Timestamp = DateTime.Now
-          }));
-
-      _hubConnection.Closed += async (error) =>
-      {
-         _isConnected = false;
-         OnError.Invoke("З'єднання втрачено. Спроба перепідключення...");
-         await ConnectAsync();
-      };
-   }
+   public event Action<RoomDto>? RoomUpdated;
+   public event Action<ChatMessageDto>? MessageReceived;
+   public event Action<string>? ErrorReceived;
 
    public async Task ConnectAsync()
    {
-      if (_isConnected)
-         return;
-
       try
       {
          await _hubConnection.StartAsync();
-         _isConnected = true;
       }
       catch (Exception ex)
       {
-         OnError.Invoke($"Помилка підключення: {ex.Message}");
-         throw;
-      }
-   }
-
-   public async Task DisconnectAsync()
-   {
-      if (!_isConnected)
-         return;
-
-      try
-      {
-         await _hubConnection.StopAsync();
-         _isConnected = false;
-      }
-      catch (Exception ex)
-      {
-         OnError.Invoke($"Помилка відключення: {ex.Message}");
+         ErrorReceived?.Invoke($"Connection error: {ex.Message}");
          throw;
       }
    }
@@ -92,32 +58,49 @@ public class SignalRChatService : IChatService, IAsyncDisposable
       try
       {
          await _hubConnection.InvokeAsync("JoinRoom", userName, roomName);
+         _currentUser = userName;
+         _currentRoom = roomName;
       }
       catch (Exception ex)
       {
-         OnError.Invoke($"Помилка входу в кімнату: {ex.Message}");
+         ErrorReceived?.Invoke($"Failed to join room: {ex.Message}");
          throw;
+      }
+   }
+
+   public async Task LeaveRoomAsync()
+   {
+      if (_currentRoom != null)
+      {
+         await _hubConnection.InvokeAsync("LeaveRoom");
+         _currentRoom = null;
       }
    }
 
    public async Task SendMessageAsync(string message)
    {
-      try
+      if (!IsConnected || string.IsNullOrEmpty(_currentRoom))
       {
-         await _hubConnection.InvokeAsync("SendMessage", message);
+         ErrorReceived?.Invoke("Not connected to a room");
+         return;
       }
-      catch (Exception ex)
+
+      await _hubConnection.InvokeAsync("SendMessage", message);
+   }
+
+   public async Task DisconnectAsync()
+   {
+      if (IsConnected)
       {
-         OnError.Invoke($"Помилка відправки повідомлення: {ex.Message}");
-         throw;
+         await LeaveRoomAsync();
+         await _hubConnection.StopAsync();
       }
    }
 
    public async ValueTask DisposeAsync()
    {
-      if (_hubConnection != null)
-      {
-         await _hubConnection.DisposeAsync();
-      }
+      await DisconnectAsync();
+      await _hubConnection.DisposeAsync();
+      GC.SuppressFinalize(this);
    }
 }

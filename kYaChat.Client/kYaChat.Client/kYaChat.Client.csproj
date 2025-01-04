@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\kYaChat.Models\kYaChat.Models.csproj" />
+    <ProjectReference Include="..\..\kYaChat.Shared\kYaChat.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

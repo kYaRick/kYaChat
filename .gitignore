@@ -398,3 +398,103 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Avalonia specific
+*.aps
+*.xaml.cs.g
+*.xaml.g.cs
+
+# IDE specific
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sw?
+.vs/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Azure specific
+*.publishsettings
+PublishScripts/
+*.pubxml
+*.azurePubxml
+.azure/
+
+# Local configuration files
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.json
+!appsettings.json
+!appsettings.Example.json
+
+# Secrets and credentials
+*.pfx
+*.key
+*.pem
+*.env
+.env.*
+secrets.json
+*.secret.json
+
+# Temporary files
+[Tt]emp/
+*.tmp
+*.bak
+*.cache
+*.log
+
+# IDE settings files
+*.DotSettings
+*.user
+*.userosscache
+*.sln.docstates
+.editorconfig
+
+# Project specific
+/wwwroot/dist/
+/ClientApp/dist/
+/ClientApp/node_modules/
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.mdf
+*.ldf
+
+# Deployment files
+/publish/
+/dist/
+*.zip
+*.tar.gz
+
+# Cache and artifacts
+.sass-cache/
+*.css.map
+*.js.map
+
+# Logs and diagnostics
+logs/
+diagnostics/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test results
+TestResults/
+[Cc]overage/
+*.coverage
+*.coveragexml
+
+# ARM templates (uncomment if you don't want to track them)
+# *.arm.json
+
+# SignalR local configurations
+*.signalr.json

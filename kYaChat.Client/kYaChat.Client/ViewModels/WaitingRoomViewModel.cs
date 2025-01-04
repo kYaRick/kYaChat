@@ -22,7 +22,7 @@ public partial class WaitingRoomViewModel : ViewModelBase
    public WaitingRoomViewModel(IChatService chatService)
    {
       _chatService = chatService;
-      _chatService.OnError += message => ErrorMessage = message;
+      _chatService.ErrorReceived += message => ErrorMessage = message;
    }
 
    [RelayCommand]
@@ -38,7 +38,7 @@ public partial class WaitingRoomViewModel : ViewModelBase
       {
          await _chatService.ConnectAsync();
          await _chatService.JoinRoomAsync(UserName, ChatName);
-         // TODO: Navigation to ChatViewModel
+
       }
       catch (Exception ex)
       {

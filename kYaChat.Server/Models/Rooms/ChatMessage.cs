@@ -1,4 +1,4 @@
-﻿namespace kYaChat.Models.Rooms;
+﻿namespace kYaChat.Server.Rooms;
 
 public class ChatMessage
 {

@@ -1,0 +1,62 @@
+<UserControl
+    x:Class="kYaChat.Client.Pages.ChatPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dto="using:kYaChat.Shared.Dtos"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:kYaChat.Client.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="vm:ChatViewModel"
+    mc:Ignorable="d">
+
+    <Grid RowDefinitions="*, Auto">
+        <ScrollViewer Grid.Row="0">
+            <ItemsControl ItemsSource="{Binding Messages}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="dto:ChatMessageDto">
+                        <Border
+                            Margin="5"
+                            Classes="Message"
+                            Theme="{StaticResource CardBorder}">
+                            <StackPanel Spacing="4">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <TextBlock Classes="Bold" Text="{Binding UserName}" />
+                                    <TextBlock Classes="Caption" Text="{Binding Timestamp, StringFormat={}{0:HH:mm}}" />
+                                </StackPanel>
+                                <TextBlock Text="{Binding Message}" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <Grid
+            Grid.Row="1"
+            Margin="5"
+            ColumnDefinitions="*, Auto">
+            <TextBox
+                Grid.Column="0"
+                Margin="0,0,5,0"
+                Classes="ClearButton"
+                InnerLeftContent="Type a message..."
+                Text="{Binding NewMessage}" />
+            <Button
+                Grid.Column="1"
+                Classes="Primary"
+                Command="{Binding SendMessageCommand}"
+                Theme="{DynamicResource SolidButton}">
+                <PathIcon Data="{DynamicResource SemiIconSend}" Theme="{DynamicResource InnerPathIcon}" />
+            </Button>
+        </Grid>
+
+        <TextBlock
+            Grid.Row="1"
+            Classes="Caption"
+            Foreground="Red"
+            IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+            Text="{Binding ErrorMessage}" />
+    </Grid>
+</UserControl>

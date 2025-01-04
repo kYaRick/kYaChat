@@ -2,6 +2,7 @@
 
 public class AppConfiguration
 {
-   public string ApiBaseUrl { get; set; } = "https://localhost:7198";
+   public string ApiBaseUrl => "https://kyachat.service.signalr.net";
    public string ChatHubUrl => $"{ApiBaseUrl}/chat";
 }
+
